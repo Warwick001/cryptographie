@@ -33,6 +33,3 @@ cle = input("Veuillez saisir la cle: ")
 
 texte_chiffre = vigenere_encrypt(texte_clair, cle)
 print("Texte chiffre :", texte_chiffre)
-
-texte_dechiffre = vigenere_decrypt(texte_chiffre, cle)
-print("Texte déchiffré :", texte_dechiffre)
