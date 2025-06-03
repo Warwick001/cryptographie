@@ -1,27 +1,18 @@
-def cesar_chiffrement(texte, cle):
+def cesar_chiffrement_complet(texte, cle):
     resultat = ""
     for char in texte:
-        if char.isalpha():
-            decale = ord(char) + cle
-            if char.islower():
-                if decale > ord('z'):
-                    decale -= 26
-            elif char.isupper():
-                if decale > ord('Z'):
-                    decale -= 26
-            resultat += chr(decale)
-        else:
-            resultat += char
+        decale = ord(char) + cle
+        resultat += chr(decale)
     return resultat
 
-def cesar_dechiffrement(texte, cle):
-    return cesar_chiffrement(texte, -cle)
+def cesar_dechiffrement_complet(texte, cle):
+    return cesar_chiffrement_complet(texte, -cle)
 
-# Exemple d'utilisation
 texte_original = input("Saisir le texte à chiffrer: ")
 cle = int(input("Saisir un chiffre pour le chiffrement: "))
-texte_chiffre = cesar_chiffrement(texte_original, cle)
-texte_dechiffre = cesar_dechiffrement(texte_chiffre, cle)
+
+texte_chiffre = cesar_chiffrement_complet(texte_original, cle)
+texte_dechiffre = cesar_dechiffrement_complet(texte_chiffre, cle)
 
 print("Texte chiffré:", texte_chiffre)
 print("Texte déchiffré:", texte_dechiffre)
