@@ -1,6 +1,6 @@
 def cesar(texte, cle, mode):
-    if mode == 2:  #Déchiffrement
-        cle = -cle  #Inversion de la clé
+    if mode == 2:  #déchiffrement
+        cle = -cle  #inversion de la clé
 
     resultat = ""
     for char in texte:
@@ -45,4 +45,5 @@ while True: #Boucle de répétition
     recommencer = input("Voulez-vous recommencer ? (oui/non) : ").strip().lower()
     if recommencer != "oui":
         print("end")
-        break #Fin boucle de répétition
+        break 
+#Fin boucle de répétition

@@ -11,7 +11,7 @@ def vigenere_encrypt(plaintext, key):
             else:
                 ciphertext += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
         else:
-            ciphertext += char
+            ciphertext += char  #conserve caractères spéciaux
     return ciphertext
 
 def vigenere_decrypt(ciphertext, key):
@@ -25,11 +25,33 @@ def vigenere_decrypt(ciphertext, key):
             else:
                 plaintext += chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
         else:
-            plaintext += char
+            plaintext += char  # Conserve caractères spéciaux
     return plaintext
 
-texte_clair = input("Veuillez saisir le mot à chiffrer: ")
-cle = input("Veuillez saisir la cle: ")
+print("*** CHIFFREMENT DE VIGENERE ***")
+print("-----------------------------------")
 
-texte_chiffre = vigenere_encrypt(texte_clair, cle)
-print("Texte chiffre :", texte_chiffre)
+while True:
+    mode = input("Choisissez une option (1 = Chiffrer, 2 = Déchiffrer): ").strip()
+    if mode not in ["1", "2"]:
+        print("Veuillez entrer 1 pour chiffrer ou 2 pour déchiffrer")
+        continue
+
+    texte = input("Veuillez saisir le texte : ")
+    cle = input("Veuillez saisir la clé (mot alphabétique) : ").strip()
+
+    if not cle.isalpha():
+        print("Erreur : La clé doit contenir uniquement des lettres.")
+        continue
+
+    if mode == "1":
+        texte_resultat = vigenere_encrypt(texte, cle)
+    else:
+        texte_resultat = vigenere_decrypt(texte, cle)
+
+    print(f"Texte transformé : {texte_resultat}")
+
+    recommencer = input("Voulez-vous recommencer ? (oui/non) : ").strip().lower()
+    if recommencer != "oui":
+        print("Fin du programme.")
+        break
