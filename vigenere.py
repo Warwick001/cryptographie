@@ -28,8 +28,8 @@ def vigenere_decrypt(ciphertext, key):
             plaintext += char
     return plaintext
 
-texte_clair = "BONJOUR"
-cle = "CLE"
+texte_clair = input("Veuillez saisir le mot à chiffrer: ")
+cle = input("Veuillez saisir la cle: ")
 
 texte_chiffre = vigenere_encrypt(texte_clair, cle)
 print("Texte chiffre :", texte_chiffre)
