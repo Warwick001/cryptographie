@@ -1,18 +1,48 @@
-def cesar_chiffrement_complet(texte, cle):
+def cesar(texte, cle, mode):
+    if mode == 2:  #Déchiffrement
+        cle = -cle  #Inversion de la clé
+
     resultat = ""
     for char in texte:
-        decale = ord(char) + cle
-        resultat += chr(decale)
+        if char.isalpha():
+            decale = ord(char) + cle
+            if char.islower():
+                if decale > ord('z'):
+                    decale -= 26
+                elif decale < ord('a'):
+                    decale += 26
+            elif char.isupper():
+                if decale > ord('Z'):
+                    decale -= 26
+                elif decale < ord('A'):
+                    decale += 26
+            resultat += chr(decale)
+        else:
+            resultat += char
+
     return resultat
 
-def cesar_dechiffrement_complet(texte, cle):
-    return cesar_chiffrement_complet(texte, -cle)
+print("*** CHIFFREMENT DE CESAR ***")
+print("-----------------------------------")
 
-texte_original = input("Saisir le texte à chiffrer: ")
-cle = int(input("Saisir un chiffre pour le chiffrement: "))
+while True: #Boucle de répétition
+    mode = input("Choisissez une option (1 = Chiffrer, 2 = Déchiffrer): ").strip()
+    if mode not in ["1", "2"]:
+        print("Veuillez entrer 1 pour chiffrer ou 2 pour déchiffrer")
+        continue
+    
+    texte = input("Saisir le texte: ")
+    while True:#boucle chiffre entier
+        try:
+            cle = int(input("Saisir la clé (nombre entier): "))
+            break  #Fin boucle chiffre entier
+        except ValueError:
+            print("Erreur : Veuillez saisir un nombre entier valide !")
+            
+    texte_resultat = cesar(texte, cle, int(mode))
+    print(f"Texte transformé : {texte_resultat}")
 
-texte_chiffre = cesar_chiffrement_complet(texte_original, cle)
-texte_dechiffre = cesar_dechiffrement_complet(texte_chiffre, cle)
-
-print("Texte chiffré:", texte_chiffre)
-print("Texte déchiffré:", texte_dechiffre)
+    recommencer = input("Voulez-vous recommencer ? (oui/non) : ").strip().lower()
+    if recommencer != "oui":
+        print("end")
+        break #Fin boucle de répétition
